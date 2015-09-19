@@ -32,5 +32,5 @@ mkdir_if_ne ~/.tmux
 ## link files
 printf "${COLOR}link tmux config ...${NC}\n"
 ln -sf $CURR_PATH/Tmux/tmux.conf ~/.tmux.conf
-ln -sf $CURR_PATH/Tmux/spotify.script ~/.tmux/spotify.script
+ln -sf $CURR_PATH/Tmux/spotify.scpt ~/.tmux/spotify.scpt
 
