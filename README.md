@@ -39,17 +39,17 @@ To install only Vim configuration execute `./Vim/install.sh`
 This repository will install tmux with a blue color scheme and some script to display the current songs on Spotify
 
 ### Shortcuts
-* `<prefix>       		-> C-a`
-* `vertical split 		-> <prefix> |`
-* `orizzontal split 		-> <prefix> -`
-* `move to left pane 	-> <prefix> l`
-* `move to right pane	-> <prefix> h`
-* `move to up pane 		-> <prefix> k`
-* `move to donw pane 	-> <prefix> j`
-* `resize top 			-> <prefix> K`
-* `resize down 			-> <prefix> J`
-* `resize left 			-> <prefix> L`
-* resize right 			-> <prefix> H
+* &lt;prefix&gt;       		=&gt; C-a
+* vertical split 		=&gt; &lt;prefix&gt; |
+* orizzontal split 		=&gt; &lt;prefix&gt; -
+* move to left pane 	=&gt; &lt;prefix&gt; l
+* move to right pane	=&gt; &lt;prefix&gt; h
+* move to up pane 		=&gt; &lt;prefix&gt; k
+* move to donw pane 	=&gt; &lt;prefix&gt; j
+* resize top 			=&gt; &lt;prefix&gt; K
+* resize down 			=&gt; &lt;prefix&gt; J
+* resize left 			=&gt; &lt;prefix&gt; L
+* resize right 			=&gt; &lt;prefix&gt; H
 
 ## Credit
 Those configurations are based on those posts:
