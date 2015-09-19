@@ -1,0 +1,148 @@
+" VUNDLE <(
+set nocompatible
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vim-latex-suite
+call vundle#begin()
+
+"Put Vundle plugin here
+
+Plugin 'gmarik/Vundle.vim'							" vundle
+Plugin 'Raimondi/delimitMate'						" automatic quote and parentesis
+" Plugin 'Valloric/YouCompleteMe'						" autocomplete for a lot of lenguage
+Plugin 'scrooloose/nerdtree'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+" Plugin 'Valloric/ycmd'
+Plugin 'gerw/vim-latex-suite'
+Plugin 'kien/ctrlp.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+" ycm comfiguration
+" let g:ycm_add_preview_to_completeopt=1
+" let g:ycm_confirm_extra_conf=0
+" set completeopt-=preview
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_show_diagnostics_ui = 1
+" let s:clang_library_path='/usr/bin/clang'
+" let g:ycm_filetype_specific_completion_to_disable = {
+" 	\ 'python':1
+" 	\}
+" if isdirectory(s:clang_library_path)
+" 	let g:clang_library_path=s:clang_library_path
+" endif
+
+" supertab configuration
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" CtrlP configuration
+let g:ctrlp_working_path_mode = 'r'
+
+let g:tex_flavor='latex'
+call vundle#end()            " required
+filetype plugin indent on    " required
+")>
+
+" VARIABLE SETTINGS <(
+set background=dark
+colorscheme solarized
+	let g:solarized_visibility =  "low"
+set fileencodings=utf-8
+set mouse=a
+syntax on
+set hlsearch
+
+set nocompatible									" Use Vim settings, rather than Vi settings (much better!).
+set backspace=indent,eol,start						" allow backspacing over everything in insert mode
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+set history=50									" keep 50 lines of command line history
+set ruler										" show the cursor position all the time
+set showcmd										" display incomplete commands
+set incsearch									" do incremental searching
+set number										" set line number
+" set relativenumber								" set line 0 to the current line
+set wildmenu									" set autocomplete in commad line more cool
+set nowrap										" remove automatic return at the end of the line
+set nolinebreak									" linebreak don't break the word when automaticaly go to new line
+set list										" show invisible charachter
+set listchars=tab:▸\ ,eol:¬							" set character for tab and enter
+set ts=4 sts=4 sw=4 noexpandtab						" set number of space for tab
+set hidden
+set foldmethod=marker								" set something at the begin and end of fold
+set foldmarker=<(,)>
+
+" change cursor shape in differet mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" enable poweline
+" source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set laststatus=2
+
+")>
+
+" KEY MAPPING  <(
+
+let mapleader = ","
+inoremap <C-U> <C-G>u<C-U>
+nmap <leader>t :NERDTreeToggle<cr>
+nnoremap B ^
+nnoremap E $
+nnoremap $ <nop>
+nnoremap ^ <nop>
+" remove <C-j> mapping for IMAP_JumpForward qasd asdf asdf asdfasd asdfa
+nnoremap <SID>imap_jumpforward <Plug>IMAP_JumpForward 
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <leader>m :tabnext<CR>
+noremap <leader>n :tabprevious<CR>
+noremap <leader>r :call DeleteLastSearch()<CR>
+noremap <leader>o :only<CR>
+noremap <C-z> :w<CR>
+vnoremap < <gv
+vnoremap > >gv
+noremap <leader>x :call MakeCurrentFile()<CR>
+inoremap <C-d> <Del>
+noremap <C-p> :CtrlPMixed<CR>
+command! Q q
+command! W w
+command! WQ wq
+
+" )>
+
+" AUTOCMD "<(
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+")>
+
+" CUSTOM FUNCTION <(
+function! MakeCurrentFile()
+	let originalPath = expand('%:p')
+	let splitPath = split(originalPath, '\.')
+	let newPath = join(splitPath[0:-2],"\\.")
+	let cmd = "make " . newPath
+	execute cmd
+endfunction
+
+function! Presave()
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	%s/\s\+$//g
+	" Clean up: restore previous search
+	history, and cursor position
+	let @/=_s
+	call cursor(l, c)
+endfunction
+
+function! DeleteLastSearch()
+	let @/=''
+endfunction
+")>
