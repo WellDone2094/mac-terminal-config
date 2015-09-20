@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CURR_PATH=`pwd`
-COLOR='\033[4;42;30m'
+COLOR='\033[4;49;34m'
 NC='\033[0m'
 BREW=1
 
@@ -19,25 +19,28 @@ function mkdir_if_ne {
 
 if [ $1 = "-b" ]; then
 	BREW=0
-	echo $1
 fi
 
 
 # Brew
-## install brew 
+## install brew
 if [ $BREW = 1 ]; then
-	printf "${COLOR}install brew ...${NC}\n"
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
+	if ! hash brew &> /dev/null; then
+		printf "${COLOR}installing brew${NC}\n"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
+	fi
 fi
 
 
 # Zsh
 ## install oh-my-zsh 
-printf "${COLOR}install oh-my-zs ...${NC}\n"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if ! type uninstall_oh_my_zsh &> /dev/null; then
+	printf "${COLOR}installing oh-my-zh${NC}\n"
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 # link confg files
-printf "${COLOR}link zsh config ...${NC}\n"
+printf "${COLOR}linking zsh config${NC}\n"
 ln -sf $CURR_PATH/Zsh/zshrc ~/.zshrc
 ln -sf $CURR_PATH/Zsh/remy.zsh-theme ~/.oh-my-zsh/themes/remy.zsh-theme
 ln -sf $CURR_PATH/Zsh/batcharge.py ~/.oh-my-zsh/batcharge.py

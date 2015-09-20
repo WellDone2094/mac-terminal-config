@@ -1,13 +1,15 @@
 #!/bin/bash
 
 CURR_PATH=`pwd`
-COLOR='\033[4;42;30m'
+COLOR='\033[4;49;34m'
 NC='\033[0m'
 
 # Brew
 ## install brew 
-printf "${COLOR}install brew ...${NC}\n"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
+if ! hash brew &> /dev/null; then
+	printf "${COLOR}Installing brew${NC}\n"
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
+fi
 
 sh Zsh/install.sh -b
 sh Tmux/install.sh -b
