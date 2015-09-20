@@ -41,6 +41,7 @@ fi
 
 # link confg files
 printf "${COLOR}linking zsh config${NC}\n"
+touch ~/.zsh_local
 ln -sf $CURR_PATH/Zsh/zshrc ~/.zshrc
 ln -sf $CURR_PATH/Zsh/remy.zsh-theme ~/.oh-my-zsh/themes/remy.zsh-theme
 ln -sf $CURR_PATH/Zsh/batcharge.py ~/.oh-my-zsh/batcharge.py
