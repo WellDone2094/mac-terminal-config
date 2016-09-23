@@ -50,7 +50,7 @@ fi
 ## link config files
 printf "${COLOR}linking vim config${NC}\n"
 ln -sf $CURR_PATH/Vim/vimrc ~/.vimrc
-ln -sf $CURr_PATH/Vim/colors ~/.vim/colors
+ln -sf $CURR_PATH/Vim/colors ~/.vim/colors
 
 
 ## install vim plugin
